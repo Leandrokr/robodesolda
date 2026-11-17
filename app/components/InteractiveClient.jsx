@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Calculator,
   CheckCircle2,
@@ -12,30 +13,32 @@ import {
   PhoneCall,
   Menu,
   Download,
-  Flame,
   Sparkles,
 } from "lucide-react";
 
+function openLeadModal(title) {
+  if (typeof window !== "undefined" && typeof window.__openLeadModal === "function") {
+    window.__openLeadModal(title);
+  }
+}
+
 // ─── NAVBAR (client: mobile menu state) ───────────────────────────────────────
-export function Navbar({ onOpenModal }) {
+export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-brand-dark/85 border-b border-brand-border/60 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent to-amber-600 flex items-center justify-center shadow-lg shadow-brand-accent/20 border border-brand-accent/40 group-hover:scale-105 transition-transform">
-            <Flame className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-mono font-bold tracking-wider text-xl text-white flex items-center gap-1.5">
-              VORTEX<span className="text-brand-accent">WELD</span>
-            </span>
-            <span className="text-[10px] tracking-widest text-brand-muted uppercase font-mono">
-              Cobots de Precisão
-            </span>
-          </div>
+        <a href="#" aria-label="KRIEX — início" className="flex flex-col items-start gap-0.5 group">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-KRIEX-sOV8YMUpepZpRXTRIQnmpb9sfv1Mkv.png"
+            alt="KRIEX"
+            width={429}
+            height={125}
+            sizes="(max-width: 640px) 128px, 144px"
+            className="w-32 sm:w-36 h-auto mix-blend-screen transition-transform group-hover:scale-[1.02]"
+          />
         </a>
 
         {/* Desktop Nav */}
@@ -55,7 +58,7 @@ export function Navbar({ onOpenModal }) {
             <PhoneCall className="w-3.5 h-3.5 text-brand-accent" /> (11) 4002-8922
           </a>
           <button
-            onClick={() => onOpenModal("Agendar Demonstração Gratuita")}
+            onClick={() => openLeadModal("Agendar Demonstração Gratuita")}
             className="px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-accent to-orange-600 text-white font-medium text-sm shadow-lg shadow-brand-accent/25 hover:shadow-brand-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
           >
             <span>Agendar Demonstração</span>
@@ -85,7 +88,7 @@ export function Navbar({ onOpenModal }) {
           <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="block text-slate-200 py-1">Perguntas Frequentes</a>
           <div className="pt-4 border-t border-brand-border/60">
             <button
-              onClick={() => { setMobileMenuOpen(false); onOpenModal("Agendar Demonstração Gratuita"); }}
+              onClick={() => { setMobileMenuOpen(false); openLeadModal("Agendar Demonstração Gratuita"); }}
               className="w-full py-3 rounded-xl bg-brand-accent text-white font-medium text-center flex items-center justify-center gap-2"
             >
               Agendar Demonstração <ArrowRight className="w-4 h-4" />
@@ -98,11 +101,11 @@ export function Navbar({ onOpenModal }) {
 }
 
 // ─── HERO BUTTONS (client: onClick) ───────────────────────────────────────────
-export function HeroCTAs({ onOpenModal }) {
+export function HeroCTAs() {
   return (
     <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
       <button
-        onClick={() => onOpenModal("Agendar Demonstração Gratuita")}
+        onClick={() => openLeadModal("Agendar Demonstração Gratuita")}
         className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-accent to-orange-600 text-white font-semibold text-base shadow-2xl shadow-brand-accent/50 hover:shadow-brand-accent/70 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2.5"
       >
         <Sparkles className="w-5 h-5" />
@@ -120,7 +123,7 @@ export function HeroCTAs({ onOpenModal }) {
 }
 
 // ─── ROI CALCULATOR (client: sliders + state) ─────────────────────────────────
-export function ROICalculator({ onOpenModal }) {
+export function ROICalculator() {
   const [welders, setWelders] = useState(2);
   const [monthlyCost, setMonthlyCost] = useState(6500);
   const [hours, setHours] = useState(16);
@@ -227,7 +230,7 @@ export function ROICalculator({ onOpenModal }) {
 
               <div className="mt-8">
                 <button
-                  onClick={() => onOpenModal("Relatório de Viabilidade e ROI em PDF")}
+                  onClick={() => openLeadModal("Relatório de Viabilidade e ROI em PDF")}
                   className="w-full py-4 rounded-xl bg-gradient-to-r from-brand-accent to-orange-600 text-white font-semibold text-sm shadow-lg shadow-brand-accent/25 hover:shadow-brand-accent/40 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Receber Relatório Detalhado em PDF</span>
@@ -412,11 +415,7 @@ export function ModalTriggerButton({ title, className, children }) {
   return (
     <button
       className={className}
-      onClick={() => {
-        if (typeof window !== "undefined" && window.__openLeadModal) {
-          window.__openLeadModal(title);
-        }
-      }}
+      onClick={() => openLeadModal(title)}
     >
       {children}
     </button>

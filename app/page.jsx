@@ -2,12 +2,13 @@
 import Image from "next/image";
 import {
   ShieldCheck, Hand, Repeat, Gem, Users, BadgeDollarSign,
-  Zap, Layers, Crosshair, Star, ArrowRight, MessageCircle, Flame,
+  Zap, Layers, Crosshair, Star, ArrowRight, MessageCircle,
 } from "lucide-react";
 import {
   Navbar, HeroCTAs, ROICalculator, FAQAccordion,
   InteractiveOverlays, ModalTriggerButton,
 } from "./components/InteractiveClient";
+import { RobotWeldingVideo } from "./components/RobotWeldingVideo";
 
 export default function Home() {
   return (
@@ -90,6 +91,8 @@ export default function Home() {
         </div>
       </section>
 
+      <RobotWeldingVideo />
+
       {/* ── VANTAGENS ─────────────────────────────────────────────── */}
       <section id="solucoes" className="py-24 bg-brand-surface/60 border-y border-brand-border/60 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +129,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">Escolha o alcance ideal para a sua produção</h2>
               <p className="mt-2 text-slate-300 max-w-xl">Células completas integradas com tocha refrigerada, limpador automático e mesa gabaritada.</p>
             </div>
-            <div className="mt-6 md:mt-0 font-mono text-xs text-brand-muted">Todos os modelos incluem 2 anos de garantia nacional</div>
+            <div className="mt-6 md:mt-0 max-w-sm font-mono text-xs leading-relaxed text-brand-muted">Distribuidor oficial FAIRINO no Brasil, com garantia e peças de reposição.</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Modelo 1 */}
@@ -292,10 +295,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white"><Flame className="w-4 h-4" /></div>
-                <span className="font-mono font-bold text-lg text-white">VORTEX<span className="text-brand-accent">WELD</span></span>
-              </div>
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-KRIEX-sOV8YMUpepZpRXTRIQnmpb9sfv1Mkv.png"
+                alt="KRIEX"
+                width={429}
+                height={125}
+                sizes="150px"
+                className="w-36 h-auto mix-blend-screen"
+              />
               <p className="text-xs text-brand-muted leading-relaxed">Especialistas em automação robótica colaborativa para processos de soldagem industrial.</p>
             </div>
             <div>
