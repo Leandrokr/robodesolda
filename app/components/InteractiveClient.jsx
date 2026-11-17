@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Calculator,
   CheckCircle2,
@@ -12,7 +13,6 @@ import {
   PhoneCall,
   Menu,
   Download,
-  Flame,
   Sparkles,
 } from "lucide-react";
 
@@ -30,18 +30,15 @@ export function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-brand-dark/85 border-b border-brand-border/60 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent to-amber-600 flex items-center justify-center shadow-lg shadow-brand-accent/20 border border-brand-accent/40 group-hover:scale-105 transition-transform">
-            <Flame className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-mono font-bold tracking-wider text-xl text-white flex items-center gap-1.5">
-              VORTEX<span className="text-brand-accent">WELD</span>
-            </span>
-            <span className="text-[10px] tracking-widest text-brand-muted uppercase font-mono">
-              Cobots de Precisão
-            </span>
-          </div>
+        <a href="#" aria-label="KRIEX — início" className="flex flex-col items-start gap-0.5 group">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-KRIEX-sOV8YMUpepZpRXTRIQnmpb9sfv1Mkv.png"
+            alt="KRIEX"
+            width={429}
+            height={125}
+            sizes="(max-width: 640px) 128px, 144px"
+            className="w-32 sm:w-36 h-auto mix-blend-screen transition-transform group-hover:scale-[1.02]"
+          />
         </a>
 
         {/* Desktop Nav */}
