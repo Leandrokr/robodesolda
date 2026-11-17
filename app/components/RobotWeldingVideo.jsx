@@ -14,13 +14,21 @@ export function RobotWeldingVideo() {
       ([entry]) => {
         if (!entry.isIntersecting) return;
 
-        video.src = "/robot-welding-demo.mp4";
-        video.load();
+        const shouldAutoplay = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        video.autoplay = shouldAutoplay;
 
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          video.play().catch(() => {});
+        if (shouldAutoplay) {
+          video.addEventListener(
+            "canplay",
+            () => video.play().catch(() => {
+              video.autoplay = false;
+            }),
+            { once: true },
+          );
         }
 
+        video.src = "/robot-welding-demo.mp4";
+        video.load();
         observer.disconnect();
       },
       { rootMargin: "320px 0px" },
@@ -35,7 +43,7 @@ export function RobotWeldingVideo() {
     <section className="relative z-10 border-b border-brand-border/60 bg-brand-dark py-12 sm:py-16 md:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-16 md:px-8">
         <div className="order-1 flex justify-center">
-          <div className="w-full overflow-hidden bg-brand-card sm:max-w-[28rem] sm:rounded-2xl sm:border sm:border-brand-border sm:shadow-2xl sm:shadow-black/30 md:max-w-none">
+          <div className="w-full overflow-hidden bg-brand-card sm:max-w-[28rem] sm:rounded-2xl sm:border sm:border-brand-border sm:shadow-2xl sm:shadow-black/30 md:max-w-none md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none">
             <video
               ref={videoRef}
               aria-label="Demonstração vertical da programação dos pontos e da soldagem realizada pelo robô colaborativo"
