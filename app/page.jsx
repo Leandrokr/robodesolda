@@ -8,6 +8,7 @@ import {
   Navbar, HeroCTAs, ROICalculator, FAQAccordion,
   InteractiveOverlays, ModalTriggerButton,
 } from "./components/InteractiveClient";
+import { RobotWeldingVideo } from "./components/RobotWeldingVideo";
 
 export default function Home() {
   return (
@@ -89,6 +90,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <RobotWeldingVideo />
 
       {/* ── VANTAGENS ─────────────────────────────────────────────── */}
       <section id="solucoes" className="py-24 bg-brand-surface/60 border-y border-brand-border/60 relative z-10">
