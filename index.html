@@ -14,39 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['Space Grotesk', 'monospace'],
-          },
-          colors: {
-            brand: {
-              dark: '#08090D',
-              surface: '#0F1118',
-              card: '#161923',
-              border: '#242A38',
-              accent: '#FF5E1E', // Welding arc ember
-              accentGlow: 'rgba(255, 94, 30, 0.25)',
-              cyan: '#00E5FF',   // Plasma torch cyan
-              cyanGlow: 'rgba(0, 229, 255, 0.2)',
-              muted: '#8A94A6'
-            }
-          }
-        }
-      }
-    }
-  </script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <link rel="stylesheet" href="styles.css">
+  <!-- Precompiled Pure Static CSS (Carregamento Instantâneo sem travar o processador do celular) -->
+  <link rel="stylesheet" href="styles.min.css">
 </head>
 <body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-accent selection:text-white font-sans overflow-x-hidden">
 
@@ -1029,7 +998,8 @@
     </div>
   </div>
 
-  <!-- Script JS -->
+  <!-- Scripts Não-Bloqueantes (Carregam no final da página) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="script.js"></script>
   <script>
     // Inicialização dos ícones Lucide
